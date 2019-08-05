@@ -1,0 +1,13 @@
+ project:
+  logo_url: "https://raw.githubusercontent.com/cncf/artwork/master/other/cncf/horizontal/color/cncf-color.svg?sanitize=true"
+  display_name: Test Project
+  sub_title: Testing
+  project_url: "https://github.com/crosscloudci/testproj"
+  stable_ref: "v0.0.1"
+  head_ref: "master"
+  ci_system:
+    -
+      ci_system_type: "citest"
+      ci_project_url: "https://example.com/cncfci/testproj"  # can be anything for citest
+      arch:
+        - amd64
