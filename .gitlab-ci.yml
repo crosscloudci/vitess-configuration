@@ -37,50 +37,26 @@ before_script:
        ./bin/update_dashboard
        popd
     fi
-compile-arm:
-  tags:
-    - arm
-  stage: Build
-  image: "arm64v8/ruby:stretch"
-  only:
-    variables:
-      - $ARCH == "arm64"
-  script:
-    - ruby -v
-    - gem install bundler
-    - sed -i "4s|.*|  gem.name          = \"fluentd-$ARCH\"|" fluentd.gemspec
-    - sed -i "19s/.*/  VERSION = "$CI_PIPELINE_ID"/" lib/fluent/version.rb
-    - bundle install -j $(nproc) --path vendor
-    - bundle exec rake build
-    - mv pkg/*gem .
-    - curl -F package=@fluentd-$ARCH-$CI_PIPELINE_ID.gem https://$GEMFURY@push.fury.io/cncf/
-
-  artifacts:
-    name: "${CI_JOB_NAME}_${CI_COMMIT_REF_NAME}"
-    untracked: true
-    expire_in: 4 weeks
-    paths:
-      - "*gem"
-      - "vendor"
-      - Gemfile.lock
 
 compile:
   stage: Build
   image: "crosscloudci/debian-ruby-docker"
-  only:
-    variables:
-      - $ARCH == "amd64"
+  #only:
+  #  variables:
+  #    - $ARCH == "amd64"
   script:
-    - export ARCH=amd64
-    - sed -i "4s|.*|  gem.name          = \"fluentd-$ARCH\"|" fluentd.gemspec
-    - sed -i "19s/.*/  VERSION = $CI_PIPELINE_ID/" lib/fluent/version.rb
-    - ruby -v
-    - gem install bundler
-    - bundle install -j $(nproc) --path vendor
-    - bundle exec rake build
-    - bundle exec rake test TESTOPTS=-v || true
-    - mv pkg/*gem .
-    - curl -F package=@fluentd-$ARCH-$CI_PIPELINE_ID.gem https://$GEMFURY@push.fury.io/cncf/
+    #- export ARCH=amd64
+    #- sed -i "4s|.*|  gem.name          = \"fluentd-$ARCH\"|" fluentd.gemspec
+    #- sed -i "19s/.*/  VERSION = $CI_PIPELINE_ID/" lib/fluent/version.rb
+    #- ruby -v
+    #- gem install bundler
+    #- bundle install -j $(nproc) --path vendor
+    #- bundle exec rake build
+    #- bundle exec rake test TESTOPTS=-v || true
+    #- mv pkg/*gem .
+    #- curl -F package=@fluentd-$ARCH-$CI_PIPELINE_ID.gem https://$GEMFURY@push.fury.io/cncf/
+    - curl -X GET "http://dev.vulk.co:4004/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
+    - curl -X GET "http://dev.vulk.co:4004/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64"
 
   artifacts:
     name: "${CI_JOB_NAME}_${CI_COMMIT_REF_NAME}"
