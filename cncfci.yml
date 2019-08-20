@@ -3,7 +3,7 @@
   display_name: Test Project
   sub_title: Testing
   project_url: "https://github.com/crosscloudci/testproj"
-  stable_ref: "v0.0.1"
+  stable_ref: "v0.0.4"
   head_ref: "master"
   ci_system:
     -
