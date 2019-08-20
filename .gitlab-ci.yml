@@ -43,22 +43,18 @@ compile:
   image: "crosscloudci/debian-ruby-docker"
   script:
     - >
-      if [ -z "$CROSS_CLOUD_YML" ]; then
-        if [ "$BASE_URL" == "https://gitlab.cncf.ci" ]; then
-          curl -X GET "http://productionapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
-          curl -X GET "http://productionapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
-        elif [ "$BASE_URL" == "https://gitlab.staging.cncf.ci" ]; then
-          curl -X GET "http://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
-          curl -X GET "http://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
-        elif [ "$BASE_URL" == "https://gitlab.cidev.cncf.ci" ]; then
-          curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
-          curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
-        else
-          curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
-          curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
-        fi
+      if [ "$BASE_URL" == "https://gitlab.cncf.ci" ]; then
+        curl -X GET "http://productionapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
+        curl -X GET "http://productionapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
+      elif [ "$BASE_URL" == "https://gitlab.staging.cncf.ci" ]; then
+        curl -X GET "http://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
+        curl -X GET "http://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
+      elif [ "$BASE_URL" == "https://gitlab.cidev.cncf.ci" ]; then
+        curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
+        curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
       else
-        export CROSS_CLOUD_YML="$CROSS_CLOUD_YML"
+        curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=AMD64" 
+        curl -X GET "http://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciproject&ref=834f6f1&arch=ARM64" 
       fi
     - > 
   artifacts:
