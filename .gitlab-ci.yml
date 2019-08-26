@@ -5,7 +5,6 @@ stages:
 before_script:
   - export BASE_URL=${BASE_URL:-$(echo $CI_PROJECT_URL |  cut -d'/' -f1-3)}
   - export CI_COMMIT_SHA_SHORT=$(echo ${CI_COMMIT_SHA} | cut -c -8)
-  - echo ${CI_COMMIT_SHA}
   - >
     if [ -z "$CROSS_CLOUD_YML" ]; then
        if [ "$BASE_URL" == "https://gitlab.cncf.ci" ]; then
@@ -51,11 +50,11 @@ compile:
         curl -X GET "https://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=AMD64" 
         curl -X GET "https://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=ARM64" 
       elif [ "$BASE_URL" == "https://gitlab.cidev.cncf.ci" ]; then
-        echo curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=AMD64" 
-        echo curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciprocrosscloudci/proj&ref=${CI_COMMIT_SHA}&arch=ARM64" 
+        curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=AMD64" 
+        curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=ciprocrosscloudci/proj&ref=${CI_COMMIT_SHA}&arch=ARM64" 
       else
-        echo curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=AMD64" 
-        echo curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=ARM64" 
+        curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=AMD64" 
+        curl -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=crosscloudci/testproj&ref=${CI_COMMIT_SHA}&arch=ARM64" 
       fi
     - > 
   artifacts:
