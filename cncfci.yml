@@ -9,5 +9,6 @@
     -
       ci_system_type: "travis-ci"
       ci_project_url: "https://example.com/cncfci/testproj"  # can be anything for citest
+      ci_project_name: "crosscloudci/testproj"
       arch:
         - amd64
