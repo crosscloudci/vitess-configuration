@@ -65,7 +65,6 @@ compile:
       - "*gem"
       - "vendor"
       - Gemfile.lock
-
 container:
   stage: Package
   image: crosscloudci/debian-docker
