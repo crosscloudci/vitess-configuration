@@ -1,14 +1,14 @@
  project:
-  logo_url: "https://raw.githubusercontent.com/cncf/artwork/master/other/cncf/horizontal/color/cncf-color.svg?sanitize=true"
-  display_name: Test Project
-  sub_title: Testing
-  project_url: "https://github.com/crosscloudci/testproj"
-  stable_ref: "v0.0.4"
+  logo_url: "https://raw.githubusercontent.com/cncf/artwork/master/projects/vitess/horizontal/color/vitess-horizontal-color.svg?sanitize=true"
+  display_name: Vitess
+  sub_title: Database Clustering System
+  project_url: "https://github.com/vitessio/vitess"
+  stable_ref: "v4.0.1"
   head_ref: "master"
   ci_system:
     -
       ci_system_type: "travis-ci"
-      ci_project_url: "https://example.com/cncfci/testproj"  # can be anything for citest
-      ci_project_name: "crosscloudci/testproj"
+      ci_project_url: "https://example.com/vitessio/vitess"  # can be anything for citest
+      ci_project_name: "vitessio/vitess"
       arch:
         - amd64

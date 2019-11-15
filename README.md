@@ -1,1 +1,1 @@
-# testproj-configuration
+# vitess-configuration
