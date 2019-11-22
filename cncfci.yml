@@ -1,7 +1,7 @@
  project:
   logo_url: "https://raw.githubusercontent.com/cncf/artwork/master/projects/vitess/horizontal/color/vitess-horizontal-color.svg?sanitize=true"
   display_name: Vitess
-  sub_title: A database clustering system for horizontal scaling of MySQL
+  sub_title: Distribute Databases
   project_url: "https://github.com/vitessio/vitess"
   stable_ref: "v4.0.1"
   head_ref: "master"
