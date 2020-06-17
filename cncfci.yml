@@ -3,7 +3,7 @@
   display_name: Vitess
   sub_title: Storage
   project_url: "https://github.com/vitessio/vitess"
-  stable_ref: "v4.0.1"
+  stable_ref: "v5.0.1"
   head_ref: "master"
   ci_system:
     -
