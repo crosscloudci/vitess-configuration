@@ -53,7 +53,7 @@ compile:
 
       elif [ "$BASE_URL" == "https://gitlab.cidev.cncf.ci" ]; then
         echo curl -f -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH"
-        curl -f -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}}&arch=$ARCH" 
+        curl -f -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH" 
 
       else
         echo curl -f -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH"
