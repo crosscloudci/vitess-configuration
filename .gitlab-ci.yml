@@ -15,7 +15,7 @@ before_script:
         echo 'Ruby found, not using rvm'
         cp -a /opt/local/dashboard /dashboard 
         pushd /dashboard
-        /bin/bash -c "source /opt/local/.env"
+        source /opt/local/.env
         bundle install
         ./bin/update_dashboard
         popd
@@ -24,7 +24,9 @@ before_script:
        source /opt/local/etc/profile.d/rvm.sh
        cp -a /opt/local/dashboard /dashboard
        pushd /dashboard
-       /bin/bash -c "source /opt/local/.env"
+       source /opt/local/.env
+       rvm use ruby-2.3.0
+       bundle install
        ./bin/update_dashboard
        popd
     fi
@@ -37,14 +39,6 @@ compile:
       if [ "$BASE_URL" == "https://gitlab.cncf.ci" ]; then
         echo curl -f -X GET "https://productionapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH"
         curl -f -X GET "https://productionapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH" 
-
-      elif [ "$BASE_URL" == "https://gitlab.staging.cncf.ci" ]; then
-        echo curl -f -X GET "https://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH"
-        curl -f -X GET "https://stagingapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH" 
-
-      elif [ "$BASE_URL" == "https://gitlab.cidev.cncf.ci" ]; then
-        echo curl -f -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH"
-        curl -f -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH" 
 
       else
         echo curl -f -X GET "https://devapi.cncf.ci/ciproxy/v1/ci_status_build/commit_ref?project=${CI_PROJECT_NAME}&ref=${CI_COMMIT_SHA}&arch=$ARCH"
