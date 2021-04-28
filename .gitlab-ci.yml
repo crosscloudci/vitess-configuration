@@ -25,7 +25,7 @@ before_script:
        cp -a /opt/local/dashboard /dashboard
        pushd /dashboard
        source /opt/local/.env
-       rvm use ruby-2.3.0
+       rvm use ruby-2.6.3
        bundle install
        ./bin/update_dashboard
        popd
